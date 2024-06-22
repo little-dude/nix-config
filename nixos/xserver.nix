@@ -1,19 +1,11 @@
 { config, pkgs, ... }: {
-  # Enabe pipewire for screensharing under wayland
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
   services.xserver = {
     enable = true;
     displayManager = {
       gdm = { enable = true; };
       # sddm.enable = true;
     };
-    layout = "us";
+    xkb.layout = "us";
     desktopManager.gnome.enable = true;
 
     # desktopManager.xfce.enable = true;

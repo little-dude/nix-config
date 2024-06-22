@@ -24,11 +24,19 @@
 
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+  # Use pipewire instead of pulseaudio
+  # pulseaudio is automatically enabled by some DEs
+  # so for it to false here
+  # https://github.com/NixOS/nixpkgs/issues/261320#issuecomment-1984160884
+  hardware.pulseaudio.enable = lib.mkForce false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
   hardware = {
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
-    };
     bluetooth = {
       enable = true;
       # powers up the default Bluetooth controller on boot
