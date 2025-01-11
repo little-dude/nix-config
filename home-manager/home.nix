@@ -64,7 +64,8 @@
     # fonts
     hack-font
     iosevka
-    nerdfonts
+    nerd-fonts.hack
+    nerd-fonts.iosevka
 
     direnv
     neofetch
@@ -137,7 +138,7 @@
     joplin-desktop
     lshw
     nix-prefetch-github
-    xournal
+    xournalpp
 
     yt-dlp
     xsel
