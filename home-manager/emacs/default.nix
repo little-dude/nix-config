@@ -1,33 +1,27 @@
 { pkgs, ... }: {
-  # Treemacs requires python3
-  home.packages = [ pkgs.python3 pkgs.emacs-all-the-icons-fonts ];
+  home.packages = [ pkgs.emacs-all-the-icons-fonts ];
   services.emacs.enable = true;
-  # Used by grip-mode
   programs.emacs = {
     enable = true;
     extraPackages = (epkgs:
       (with epkgs; [
-        markdown-toc
-        grip-mode
         doom-themes
         doom-modeline
         all-the-icons
-        mix
         direnv
         use-package
         use-package-chords
+        markdown-toc
         magit
         company
         # See: https://github.com/tigersoldier/company-lsp/issues/147
         # company-lsp
         flycheck
-        es-mode
-        elpy
         rg
-        vimrc-mode
         projectile
         evil
         evil-collection
+        json-mode
         undo-tree
         rainbow-delimiters
         treemacs
@@ -51,18 +45,13 @@
         swiper
         which-key
         helpful
+        elpy
         yaml-mode
         # we don't use helm but it's needed to display rust documentation
         # see: https://github.com/brotzeit/rustic#inline-documentation
         helm-ag
         ini-mode
         protobuf-mode
-        rjsx-mode
-        prettier
-        tide
-        typescript-mode
-        web-mode
-        sqlformat
         yang-mode
       ]));
   };
@@ -82,8 +71,14 @@
     "Emacs.menuBar" = false;
     "Emacs.toolBar" = false;
     "Emacs.verticalScrollBars" = false;
-    "Emacs.Font" =
-      "-CYEL-Iosevka-normal-normal-normal-*-16-*-*-*-d-0-iso10646-1";
+    # If this is broken after fonts are updated:
+    # - rebuild the fonts with `fc-cache -f` (https://github.com/nix-community/home-manager/issues/605)
+    # - `rm -rf ~/.cache/fontconfig` (https://github.com/nix-community/emacs-overlay/issues/75)
+    #
+    # Useful emacs commands:
+    # - describe the current font with `C-u C-x =`
+    # - dynamically change the font: `M-x set-frame-font`
+    "Emacs.Font" = "-UKWN-Iosevka Nerd Font Propo-regular-normal-normal-*-15-*-*-*-*-0-iso10646-1";
   };
 
   # Home manager's emacs service doesn't provide a desktop entry for the emacs
