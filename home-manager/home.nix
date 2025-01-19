@@ -47,8 +47,13 @@
     mime.enable = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   fonts.fontconfig.enable = true;
-  services.lorri.enable = true;
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -66,7 +71,6 @@
     nerd-fonts.iosevka
     nerd-fonts.fira-code
 
-    direnv
     neofetch
 
     # archives

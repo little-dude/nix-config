@@ -43,10 +43,9 @@ bindkey -M viins "^R" history-incremental-pattern-search-backward-from-line
 bindkey -M vicmd "^R" history-incremental-pattern-search-backward-from-line
 bindkey -M isearch "^R" history-incremental-pattern-search-backward
 
-# ===============================
-# direnv
-# ===============================
-eval "$(direnv hook zsh)"
+# direnv integration but this is now done by home-manager:
+# https://github.com/nix-community/home-manager/blob/release-24.05/modules/programs/direnv.nix#L121
+# eval "$(direnv hook zsh)"
 
 # On MAC keyboard, Super and Alt are swapped which is very confusing.  This
 # function swaps them back. See: https://unix.stackexchange.com/a/226641/45689
