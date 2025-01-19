@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: rec {
+{ config, pkgs, ... }:
+rec {
 
   home.packages = [ pkgs.starship ];
   programs.zsh = {

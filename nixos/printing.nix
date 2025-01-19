@@ -1,5 +1,9 @@
-{ pkgs, ... }: {
-  users.users.little-dude.extraGroups = [ "scanner" "lp" ];
+{ pkgs, ... }:
+{
+  users.users.little-dude.extraGroups = [
+    "scanner"
+    "lp"
+  ];
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -18,7 +22,11 @@
   # Scanner
   hardware.sane = {
     enable = true;
-    extraBackends = with pkgs; [ epkowa utsushi hplipWithPlugin ];
+    extraBackends = with pkgs; [
+      epkowa
+      utsushi
+      hplipWithPlugin
+    ];
   };
   services.udev.packages = [ pkgs.utsushi ];
   # Discover printers/scanners on the network
