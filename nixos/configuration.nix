@@ -127,6 +127,7 @@
     firefox
     git
     xsel
+    mlocate
   ];
 
   services.sshd.enable = true;
