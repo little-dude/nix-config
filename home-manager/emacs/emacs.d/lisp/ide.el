@@ -44,6 +44,11 @@
   :config
   (lsp-enable-which-key-integration t))
 
+;; https://github.com/MasseR/nix-conf-emacs/commit/f4287c2b34128b0dde61f58ada4e474e1ed096dc
+(use-package lsp-completion
+  :config
+  (lsp-inline-completion-mode))
+
 (use-package lsp-ui
   :commands lsp-ui-mode)
 
