@@ -88,7 +88,7 @@
     p7zip
     gnutar
     zstd
-    
+
     # zed-editor
 
     # cli tools
