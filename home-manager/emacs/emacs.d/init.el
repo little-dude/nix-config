@@ -22,7 +22,11 @@
   :mode ("\\.ya?ml$" . yaml-mode))
 
 (use-package direnv
-  :config (direnv-mode))
+  :config
+  ;; Ensures that external dependencies are available before they are
+  ;; called. See: https://github.com/wbolster/emacs-direnv/issues/17
+  (add-hook 'prog-mode-hook #'direnv--maybe-update-environment)
+  (direnv-mode 1))
 
 (use-package nix-mode
   :mode "\\.nix\\'")
