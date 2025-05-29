@@ -9,7 +9,7 @@
     package = pkgs.open-webui;
     enable = true;
     environment = {
-      ENABLE_SIGNUP="True";
+      ENABLE_SIGNUP = "True";
       ANONYMIZED_TELEMETRY = "False";
       DO_NOT_TRACK = "True";
       SCARF_NO_ANALYTICS = "True";

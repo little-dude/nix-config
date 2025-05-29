@@ -28,6 +28,7 @@
     # ./steam.nix
     ./on-the-go.nix
     ./ai.nix
+    ./nix-utils.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -139,8 +140,6 @@
     git
     xsel
     mlocate
-    nix-tree
-    nix-output-monitor
     just
   ];
 
