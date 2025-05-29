@@ -2,7 +2,7 @@
   home.packages = [pkgs.diff-so-fancy];
   programs.git = {
     enable = true;
-    userEmail = "little-dude@gmail.com";
+    userEmail = "corentinhenry@gmail.com";
     userName = "little-dude";
     extraConfig = {
       push = {
