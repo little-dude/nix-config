@@ -88,7 +88,7 @@
     p7zip
     gnutar
     zstd
-    
+
     television # Fuzzy finding in zed: https://github.com/zed-industries/zed/discussions/22581
     zed-editor
 
@@ -106,6 +106,8 @@
     dfc
     nixfmt-rfc-style
     jq # A lightweight and flexible command-line JSON processor
+    pandoc
+    texlive.combined.scheme-full
     pdftk
     pdfchain
 
