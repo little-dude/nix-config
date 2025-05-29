@@ -25,9 +25,9 @@
     ./xserver.nix
     ./virtualization.nix
     ./printing.nix
-    # ./steam.nix
+    ./steam.nix
     ./on-the-go.nix
-    ./ai.nix
+    # ./ai.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
