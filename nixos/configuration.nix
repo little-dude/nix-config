@@ -22,6 +22,20 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+    };
+    bluetooth = {
+      enable = true;
+      # powers up the default Bluetooth controller on boot
+      powerOnBoot = true;
+    };
+  };
+
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users.little-dude = import ../home-manager/home.nix;
@@ -76,6 +90,7 @@
     daemon.enable = true;
     updater.enable = true;
   };
+  systemd.services.clamav-freshclam.wants = [ "network-online.target" ];
 
   boot = {
     # try to disable the bell

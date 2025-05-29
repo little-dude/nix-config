@@ -91,6 +91,8 @@
     dfc
     nixfmt
     jq # A lightweight and flexible command-line JSON processor
+    pdftk
+    pdfchain
 
     # networking tools
     mtr # A network diagnostic tool
@@ -149,5 +151,6 @@
     dia
     gimp
     libreoffice-fresh
+    transmission-gtk
   ];
 }

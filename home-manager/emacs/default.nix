@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   # Treemacs requires python3
-  home.packages =
-    [ pkgs.python3 pkgs.emacs-all-the-icons-fonts pkgs.python39Packages.grip ];
+  home.packages = [ pkgs.python3 pkgs.emacs-all-the-icons-fonts ];
   services.emacs.enable = true;
   # Used by grip-mode
   programs.emacs = {
