@@ -1,9 +1,36 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.ollama = {
     enable = true;
     acceleration = "cuda";
+    # https://mikelev.in/futureproof/nixos-nvidia-cuda-ollama/#working-nvidia-configuration-example
+    # environmentVariables = {
+    #   CUDA_VISIBLE_DEVICES = "0";
+    #   NVIDIA_VISIBLE_DEVICES = "all";
+    # };
   };
-  environment.systemPackages = [pkgs.oterm];
+  environment.systemPackages = with pkgs; [
+    oterm
+    # https://mikelev.in/futureproof/nixos-nvidia-cuda-ollama/#working-nvidia-configuration-example
+    # cudaPackages.cudatoolkit
+    # cudaPackages.cudnn
+    # cudaPackages.cuda_cudart
+  ];
+  # https://mikelev.in/futureproof/nixos-nvidia-cuda-ollama/#working-nvidia-configuration-example
+  # environment.sessionVariables = {
+  #   CUDA_HOME = "${pkgs.cudaPackages.cudatoolkit}";
+  #   CUDA_MODULE_LOADING = "LAZY";
+  #   # LD_LIBRARY_PATH = lib.makeLibraryPath [
+  #   #   "${pkgs.cudaPackages.cudatoolkit}"
+  #   #   "${pkgs.cudaPackages.cudatoolkit}/lib64"
+  #   #   pkgs.cudaPackages.cudnn
+  #   #   pkgs.cudaPackages.cuda_cudart
+  #   #   pkgs.stdenv.cc.cc.lib
+  #   # ];
+  # };
   services.open-webui = {
     package = pkgs.open-webui;
     enable = true;
