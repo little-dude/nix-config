@@ -59,3 +59,6 @@
   :defer t
   :init
   (advice-add 'python-mode :before 'elpy-enable))
+
+(use-package gleam-ts-mode
+  :mode (rx ".gleam" eos))

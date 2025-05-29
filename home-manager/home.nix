@@ -62,10 +62,9 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # fonts
-    hack-font
-    iosevka
     nerd-fonts.hack
     nerd-fonts.iosevka
+    nerd-fonts.fira-code
 
     direnv
     neofetch
