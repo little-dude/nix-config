@@ -89,7 +89,8 @@
     gnutar
     zstd
     
-    # zed-editor
+    television # Fuzzy finding in zed: https://github.com/zed-industries/zed/discussions/22581
+    zed-editor
 
     # cli tools
     gh
