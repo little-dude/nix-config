@@ -88,6 +88,8 @@
     p7zip
     gnutar
     zstd
+    
+    # zed-editor
 
     # cli tools
     gh
@@ -96,7 +98,7 @@
     du-dust
     eza
     tokei
-    xsv
+    xan
     fd
     tmux
     htop
