@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   # When using undocked, use offload mode.
   # FIXME: currently we _also_ use offload mode when docked. We should try
   # using sync mode instead.
