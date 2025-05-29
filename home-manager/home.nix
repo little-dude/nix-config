@@ -1,8 +1,5 @@
 {
-  inputs,
   outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -16,6 +13,7 @@
     ./nvim
     ./tmux
     ./git
+    ./fish.nix
     ./zsh
     ./emacs
     ./gnome.nix
@@ -54,9 +52,13 @@
     mime.enable = true;
   };
 
+  programs.nix-index.enable = true;
+  programs.nix-index.enableFishIntegration = true;
+
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
+    # This is enabled by default
+    # enableFishIntegration = true;
     nix-direnv.enable = true;
   };
 

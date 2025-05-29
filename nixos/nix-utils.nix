@@ -5,6 +5,7 @@
 }: {
   environment.systemPackages = [
     # Utilities
+    pkgs.nurl
     pkgs.nix-tree
     pkgs.nix-output-monitor
 

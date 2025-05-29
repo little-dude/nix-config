@@ -126,10 +126,26 @@
     uid = 1000;
     group = "users";
     extraGroups = ["wheel"];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
   };
-
   programs.zsh.enable = true;
+  programs.fish.enable = true;
+  # First, we don't want to make fish the login shell so we start it from bash.
+  # https://nixos.wiki/wiki/Fish#Setting_fish_as_your_shell
+  programs.bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
+  };
+  # Prevent NixOS from adding ls aliases, because they leak into fish.
+  # See https://discourse.nixos.org/t/fish-alias-added-by-nixos-cant-delete/19626
+  environment.shellAliases = lib.mkForce {};
+  # See: https://discourse.nixos.org/t/how-to-specify-programs-sqlite-for-command-not-found-from-flakes/22722/5
+  programs.command-not-found.enable = false;
 
   environment.systemPackages = with pkgs; [
     pciutils

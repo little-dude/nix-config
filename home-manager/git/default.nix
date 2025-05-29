@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [pkgs.diff-so-fancy];
   programs.git = {
     enable = true;

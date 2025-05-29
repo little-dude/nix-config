@@ -4,6 +4,9 @@ deploy:
 debug:
   nixos-rebuild switch --flake . --show-trace --verbose
 
+format:
+  alejandra .
+
 up:
   nix flake update
 
