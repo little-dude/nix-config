@@ -1,8 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   services.xserver = {
     enable = true;
     displayManager = {
-      gdm = { enable = true; };
+      gdm = {
+        enable = true;
+      };
       # sddm.enable = true;
     };
     xkb.layout = "us";

@@ -1,11 +1,14 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home.packages = [ pkgs.diff-so-fancy ];
   programs.git = {
     enable = true;
     userEmail = "little-dude@gmail.com";
     userName = "little-dude";
     extraConfig = {
-      push = { default = "matching"; };
+      push = {
+        default = "matching";
+      };
       core = {
         editor = "nvim";
         excludesfile = "${./gitignore}";
@@ -13,7 +16,9 @@
         pager = "diff-so-fancy | less --tabs=4 -RFX";
         commentChar = "@";
       };
-      github = { user = "little-dude"; };
+      github = {
+        user = "little-dude";
+      };
       forge = {
         # By default, forge uses the remote named "origin" as the
         # *upstream*, but we follow a different convention where

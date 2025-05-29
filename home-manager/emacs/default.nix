@@ -1,9 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [ pkgs.emacs-all-the-icons-fonts ];
   services.emacs.enable = true;
   programs.emacs = {
     enable = true;
-    extraPackages = (epkgs:
+    extraPackages = (
+      epkgs:
       (with epkgs; [
         doom-themes
         doom-modeline
@@ -54,7 +56,8 @@
         ini-mode
         protobuf-mode
         yang-mode
-      ]));
+      ])
+    );
   };
 
   home.file = {
