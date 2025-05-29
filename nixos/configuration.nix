@@ -27,6 +27,7 @@
     ./printing.nix
     # ./steam.nix
     ./on-the-go.nix
+    ./ai.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
