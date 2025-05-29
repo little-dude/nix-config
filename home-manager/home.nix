@@ -112,6 +112,7 @@
     pdfchain
 
     # networking tools
+    sniffnet
     mtr # A network diagnostic tool
     iperf3
     dnsutils # `dig` + `nslookup`
@@ -150,8 +151,8 @@
     google-chrome
     evince
     signal-desktop
-    joplin
-    joplin-desktop
+    # joplin
+    # joplin-desktop
     lshw
     nix-prefetch-github
     xournalpp

@@ -4,11 +4,12 @@
     enable = true;
     acceleration = "cuda";
   };
-  # environment.systemPackages = [ pkgs.oterm ];
+  environment.systemPackages = [ pkgs.oterm ];
   services.open-webui = {
     package = pkgs.open-webui;
     enable = true;
     environment = {
+      ENABLE_SIGNUP="True";
       ANONYMIZED_TELEMETRY = "False";
       DO_NOT_TRACK = "True";
       SCARF_NO_ANALYTICS = "True";
