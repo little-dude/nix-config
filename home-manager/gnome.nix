@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # Generated with dconf2nix
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
@@ -32,5 +35,5 @@
       event-sounds = false;
     };
   };
-  home.packages = [ pkgs.gnome-tweaks ];
+  home.packages = [pkgs.gnome-tweaks];
 }

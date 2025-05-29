@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
-rec {
-
-  home.packages = [ pkgs.starship ];
+{
+  config,
+  pkgs,
+  ...
+}: rec {
+  home.packages = [pkgs.starship];
   programs.zsh = {
     enable = true;
     # autocd = true;
@@ -41,7 +43,6 @@ rec {
       tree = "eza --tree --level=3";
       virsh = "virsh -c qemu:///system";
       diff = "git diff --no-index";
-
     };
     initExtra = builtins.readFile ./zshrc;
   };

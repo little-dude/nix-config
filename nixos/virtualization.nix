@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  environment.systemPackages = [ pkgs.virt-manager ];
+  config,
+  pkgs,
+  ...
+}: {
+  environment.systemPackages = [pkgs.virt-manager];
   virtualisation = {
     libvirtd.enable = true;
     docker.enable = true;
@@ -9,5 +12,5 @@
     "docker"
     "libvirtd"
   ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = ["kvm-intel"];
 }

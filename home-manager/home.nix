@@ -5,8 +5,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
@@ -94,6 +93,7 @@
 
     # cli tools
     gh
+    bat
     hub
     ripgrep
     du-dust
@@ -104,7 +104,6 @@
     tmux
     htop
     dfc
-    nixfmt-rfc-style
     jq # A lightweight and flexible command-line JSON processor
     pandoc
     texlive.combined.scheme-full

@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  home.packages = [ pkgs.powerline ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [pkgs.powerline];
   programs.tmux = {
     enable = true;
     extraConfig =
@@ -10,5 +13,4 @@
       ''
       + builtins.readFile ./tmux.conf;
   };
-
 }

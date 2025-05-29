@@ -7,8 +7,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -55,7 +54,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users.little-dude = import ../home-manager/home.nix;
     # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
   };
@@ -85,7 +84,7 @@
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -93,7 +92,7 @@
 
     settings = {
       # Enable flakes and new 'nix' command
-      experimental-features = [ "nix-command flakes" ];
+      experimental-features = ["nix-command flakes"];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
@@ -107,7 +106,7 @@
     daemon.enable = true;
     updater.enable = true;
   };
-  systemd.services.clamav-freshclam.wants = [ "network-online.target" ];
+  systemd.services.clamav-freshclam.wants = ["network-online.target"];
 
   boot = {
     # try to disable the bell
@@ -126,7 +125,7 @@
     isNormalUser = true;
     uid = 1000;
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     shell = pkgs.zsh;
   };
 

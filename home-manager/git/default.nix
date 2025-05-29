@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  home.packages = [ pkgs.diff-so-fancy ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [pkgs.diff-so-fancy];
   programs.git = {
     enable = true;
     userEmail = "little-dude@gmail.com";

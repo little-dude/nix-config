@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   users.users.little-dude.extraGroups = [
     "scanner"
     "lp"
@@ -28,7 +27,7 @@
       hplipWithPlugin
     ];
   };
-  services.udev.packages = [ pkgs.utsushi ];
+  services.udev.packages = [pkgs.utsushi];
   # Discover printers/scanners on the network
   services.avahi.enable = true;
   # Important to resolve .local domains of printers, otherwise you get an error

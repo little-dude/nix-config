@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.ollama = {
     enable = true;
     acceleration = "cuda";
   };
-  environment.systemPackages = [ pkgs.oterm ];
+  environment.systemPackages = [pkgs.oterm];
   services.open-webui = {
     package = pkgs.open-webui;
     enable = true;

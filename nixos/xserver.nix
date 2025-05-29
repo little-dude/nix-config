@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.xserver = {
     enable = true;
     displayManager = {
@@ -19,9 +22,9 @@
   # Use our keyboard options in the console as well
   console.useXkbConfig = true;
 }
-
 # Note: in order to use xfce:
 # - enable ssdm instead of gdm
 # - add the nm-applet
 # - add the xfce4-pulseaudia-plugin
 # - enable blueman for bluetooth
+

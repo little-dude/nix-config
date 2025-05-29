@@ -3,14 +3,13 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   # When using undocked, use offload mode.
   # FIXME: currently we _also_ use offload mode when docked. We should try
   # using sync mode instead.
   specialisation = {
     on-the-go.configuration = {
-      system.nixos.tags = [ "on-the-go" ];
+      system.nixos.tags = ["on-the-go"];
       hardware.nvidia = {
         prime = {
           sync.enable = lib.mkForce false;

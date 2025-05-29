@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-{
-  home.packages = [ pkgs.emacs-all-the-icons-fonts ];
+{pkgs, ...}: {
+  home.packages = [pkgs.emacs-all-the-icons-fonts];
   services.emacs.enable = true;
   programs.emacs = {
     enable = true;
     extraPackages = (
-      epkgs:
-      (with epkgs; [
+      epkgs: (with epkgs; [
         doom-themes
         doom-modeline
         all-the-icons
