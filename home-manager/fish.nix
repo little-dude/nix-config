@@ -9,16 +9,23 @@
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
+    shellAliases = {
+      "ls" = "eza --group --header --group-directories-first";
+      "l" = "eza --group --header --group-directories-first";
+      "la" = "eza --group --header --group-directories-first --all";
+      "ll" = "eza --long --group --header --group-directories-first --git";
+      "lla" = "eza --long --group --header --group-directories-first --git --all";
+      "lai" = "eza --group --header --group-directories-first --all --git-ignore";
+      "lli" = "eza --long --group --header --group-directories-first --git --git-ignore";
+      "llai" = "eza --long --group --header --group-directories-first --git --all --git-ignore";
+      "tree" = "eza --tree";
+      "treea" = "eza --tree --all";
+      "treei" = "eza --tree --git-ignore";
+      "treeai" = "eza --tree --all --git-ignore";
+      "treel" = "eza --tree --level";
+      "treeli" = "eza --tree --git-ignore --level";
+    };
     plugins = [
-      {
-        name = "fish-exa";
-        src = pkgs.fetchFromGitHub {
-          owner = "gazorby";
-          repo = "fish-exa";
-          rev = "92e5bcb762f7c08cc4484a2a09d6c176814ef35d";
-          hash = "sha256-kw4XrchvF4SNNoX/6HRw2WPvCxKamwuTVWdHg82Pqac=";
-        };
-      }
       {
         name = "autopair";
         src = pkgs.fishPlugins.autopair.src;
