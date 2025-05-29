@@ -28,7 +28,7 @@
   # pulseaudio is automatically enabled by some DEs
   # so for it to false here
   # https://github.com/NixOS/nixpkgs/issues/261320#issuecomment-1984160884
-  hardware.pulseaudio.enable = lib.mkForce false;
+  services.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
