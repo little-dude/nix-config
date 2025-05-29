@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  home.packages = [pkgs.powerline];
+  home.packages = [pkgs.powerline pkgs.xclip];
   programs.tmux = {
     enable = true;
     extraConfig =
