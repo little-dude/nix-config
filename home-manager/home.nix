@@ -90,7 +90,7 @@
     tmux
     htop
     dfc
-    nixfmt
+    nixfmt-rfc-style
     jq # A lightweight and flexible command-line JSON processor
     pdftk
     pdfchain
@@ -152,6 +152,6 @@
     dia
     gimp
     libreoffice-fresh
-    transmission-gtk
+    transmission_4-gtk
   ];
 }
