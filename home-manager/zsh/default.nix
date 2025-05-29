@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: rec {
+{pkgs, ...}: rec {
   home.packages = [pkgs.starship];
   programs.zsh = {
     enable = true;
@@ -44,7 +40,7 @@
       virsh = "virsh -c qemu:///system";
       diff = "git diff --no-index";
     };
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
   };
 
   home.file = {
