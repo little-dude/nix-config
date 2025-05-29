@@ -10,7 +10,13 @@
 (load-file "~/.emacs.d/lisp/ide.el")
 (load-file "~/.emacs.d/lisp/git.el")
 
-(setq visible-bell 1)
+;; TMP https://github.com/magit/magit/issues/5011
+(defun seq-keep (function sequence)
+  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
+  (delq nil (seq-map function sequence)))
+
+(use-package json-mode
+  :mode ("\\.json$" . json-mode))
 
 (use-package yaml-mode
   :mode ("\\.ya?ml$" . yaml-mode))
@@ -32,9 +38,6 @@
 (use-package rustic
   :config
   (setq rustic-lsp-server 'rust-analyzer)
-  ;; We use `direnv` so `rust-analyzer` will always be found. No need
-  ;; to hardcode an absolute path
-  (setq rustic-analyzer-command '("rust-analyzer"))
   (unbind-key "C-c C-c C-t" rustic-mode-map)
   ;; when passing custom test args with rustic-test-arguments, we need
   ;; to run rustic-cargo-test-rerun instead of rustic-cargo-test
@@ -42,25 +45,6 @@
   ;; To pass custom test args, add this to .dir-locals.el:
   ;; ((rustic-mode . ((rustic-test-arguments . "-- --skip integration"))))
   :bind (("C-c C-c C-t" . rustic-cargo-test-rerun)))
-
-(use-package es-mode
-  :init (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
-  :hook ((es-result-mode . hs-minor-mode)))
-
-(use-package elpy
-  :commands elpy-enable
-  ;; Only call `elpy-enable` when needed.
-  ;; See: https://emacs.stackexchange.com/q/10065/22105
-  :init (with-eval-after-load 'python (elpy-enable))
-  :config
-  (setq elpy-rpc-virtualenv-path 'current)
-  ;; by default, elpy uses flymake. This forces it to use flycheck instead
-  ;; See:
-  ;;     - https://github.com/jorgenschaefer/elpy/wiki/Customizations#use-flycheck-instead-of-flymake
-  ;;     - https://github.com/jorgenschaefer/elpy/issues/137
-  (when (require 'flycheck nil t)
-    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode)))
 
 (use-package rg
   :config (rg-enable-default-bindings))
@@ -70,12 +54,9 @@
   ;; with mariadb, the default regexp used to match the prompt is a bit off. This fixes it.
   (sql-set-product-feature 'mysql :prompt-regexp "^\\(MariaDB\\|MySQL\\) \\[[_a-zA-Z]*\\]> "))
 
-(use-package sqlformat
-  :config
-  (setq sqlformat-command 'pgformatter))
-
-(use-package vimrc-mode
-  :init (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode)))
-
 (use-package undo-tree
-  :init (global-undo-tree-mode))
+  :init
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-enable-undo-in-region nil)
+  (setq undo-tree-history-directory-alist '(("." . "~/emacs.d/undo")))
+  (global-undo-tree-mode))

@@ -3,15 +3,20 @@
   (key-chord-mode 1)
   ;; The default value is 0.1 but it's a bit short. The problem is
   ;; that it kinda feels slow when moving with `j` or `k` if we set it
-  ;; to 0.2.
-  (setq key-chord-two-keys-delay 0.2))
+  ;; to 0.2. We're basically experiencing this:
+  ;; https://github.com/emacs-evil/evil/issues/69
+  (setq key-chord-two-keys-delay 0.2)
+  ;; This seems to make things better
+  (setq key-chord-safety-interval-forward 0.1))
 
 (use-package evil
   :init
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
   (setq evil-want-keybinding nil)
+  (setq evil-esc-delay 0)
   (setq evil-undo-system 'undo-tree)
-  :chords (("jk" . evil-normal-state))
+  :chords (("jk" . evil-normal-state)
+           ("kj" . evil-normal-state))
   :config
   (evil-mode 1)
   (setq evil-symbol-word-search t)
