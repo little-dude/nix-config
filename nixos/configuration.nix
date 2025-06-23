@@ -24,7 +24,7 @@
     ./xserver.nix
     ./virtualization.nix
     ./printing.nix
-    # ./steam.nix
+    ./steam.nix
     ./on-the-go.nix
     ./ai.nix
     ./nix-utils.nix
