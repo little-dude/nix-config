@@ -111,6 +111,12 @@
     texlive.combined.scheme-full
     pdftk
     pdfchain
+    qpdf
+    exiftool
+    poppler-utils
+    img2pdf
+
+    napari
 
     # networking tools
     sniffnet
