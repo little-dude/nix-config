@@ -158,8 +158,8 @@
     google-chrome
     evince
     signal-desktop
-    # joplin
-    # joplin-desktop
+    joplin
+    joplin-desktop
     lshw
     nix-prefetch-github
     xournalpp
