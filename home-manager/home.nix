@@ -98,7 +98,7 @@
     bat
     hub
     ripgrep
-    du-dust
+    dust
     eza
     tokei
     xan

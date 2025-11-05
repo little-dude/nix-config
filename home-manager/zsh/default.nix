@@ -1,10 +1,14 @@
-{pkgs, ...}: rec {
+{
+  pkgs,
+  config,
+  ...
+}: rec {
   home.packages = [pkgs.starship];
   programs.zsh = {
     enable = true;
     # autocd = true;
     defaultKeymap = "emacs";
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     plugins = [
       {
         name = "zsh-syntax-highlighting";

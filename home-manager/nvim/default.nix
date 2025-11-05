@@ -123,8 +123,8 @@
           -- force enable telescope-fzf-native.nvim
           { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
           -- disable mason.nvim, use programs.neovim.extraPackages
-          { "williamboman/mason-lspconfig.nvim", enabled = false },
-          { "williamboman/mason.nvim", enabled = false },
+          { "mason-org/mason-lspconfig.nvim", enabled = false },
+          { "mason-org/mason.nvim", enabled = false },
           -- https://github.com/LazyVim/LazyVim/discussions/1972#discussioncomment-9804886
           { "nvim-treesitter/nvim-treesitter",
             opts = function(_, opts)

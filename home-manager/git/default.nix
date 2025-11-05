@@ -1,9 +1,11 @@
 {pkgs, ...}: {
   home.packages = [pkgs.diff-so-fancy];
-  programs.git = {
+  programs.git.settings = {
     enable = true;
-    userEmail = "corentinhenry@gmail.com";
-    userName = "little-dude";
+    user = {
+      email = "corentinhenry@gmail.com";
+      name = "little-dude";
+    };
     extraConfig = {
       push = {
         default = "matching";
