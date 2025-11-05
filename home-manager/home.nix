@@ -173,7 +173,8 @@
     calibre
     discord
     vlc
-    dia
+    # FIXME: temporarily disabled
+    # dia
     gimp
     libreoffice-fresh
     transmission_4-gtk
