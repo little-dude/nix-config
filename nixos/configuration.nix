@@ -163,6 +163,14 @@
   # To communicate with android. See: https://nixos.wiki/wiki/Android#adb_setup
   programs.adb.enable = true;
 
+  security.wrappers.sniffnet = {
+    source = "${pkgs.sniffnet}/bin/sniffnet";
+    capabilities = "cap_net_raw,cap_net_admin=eip";
+    owner = "root";
+    group = "root";
+    permissions = "u+rx,g+rx,o+rx";
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
