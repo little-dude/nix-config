@@ -28,6 +28,9 @@
     ./on-the-go.nix
     ./ai.nix
     ./nix-utils.nix
+    ./proton-vpn.nix
+    # running gns3-server locally doesn't work.. We're now using a virtualbox VM
+    ./gns3.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -156,6 +159,8 @@
     xsel
     mlocate
     just
+    inetutils
+    xterm
   ];
 
   services.sshd.enable = true;

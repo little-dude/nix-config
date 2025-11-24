@@ -108,7 +108,8 @@
     dfc
     jq # A lightweight and flexible command-line JSON processor
     pandoc
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
+    typst
     pdftk
     pdfchain
     qpdf

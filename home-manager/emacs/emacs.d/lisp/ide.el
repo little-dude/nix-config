@@ -66,6 +66,9 @@
   :init
   (advice-add 'python-mode :before 'elpy-enable))
 
+(use-package typst-ts-mode
+  :mode (rx ".typst" eos))
+
 (use-package gleam-ts-mode
   :mode (rx ".gleam" eos))
 ;; TODO: automatically install the tree sitter grammar:

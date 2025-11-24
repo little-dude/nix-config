@@ -1,5 +1,9 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.emacs-all-the-icons-fonts];
+  home.packages = [
+    pkgs.emacs-all-the-icons-fonts
+    # pkgs.tree-sitter-grammars.tree-sitter-gleam
+    pkgs.tree-sitter-grammars.tree-sitter-typst
+  ];
   services.emacs.enable = true;
   programs.emacs = {
     enable = true;
@@ -51,6 +55,7 @@
         # we don't use helm but it's needed to display rust documentation
         # see: https://github.com/brotzeit/rustic#inline-documentation
         # helm-ag
+        typst-ts-mode
         ini-mode
         protobuf-mode
         yang-mode
