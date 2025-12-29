@@ -89,7 +89,6 @@
 
 (use-package all-the-icons)
 
-
 ;; ======================== Treemacs ========================
 (use-package treemacs-all-the-icons)
 
@@ -103,7 +102,9 @@
 (use-package treemacs-evil
   :after treemacs evil
   :bind
-   (("M-l" . 'evil-window-right)))
+  (("M-l" . 'evil-window-right))
+  :config
+  (setq evil-want-minibuffer t))
 
 (use-package treemacs-projectile
   :after treemacs projectile)
