@@ -117,7 +117,7 @@
     poppler-utils
     img2pdf
 
-    napari
+    # napari
 
     # networking tools
     sniffnet
