@@ -165,9 +165,6 @@
 
   services.sshd.enable = true;
 
-  # To communicate with android. See: https://nixos.wiki/wiki/Android#adb_setup
-  programs.adb.enable = true;
-
   security.wrappers.sniffnet = {
     source = "${pkgs.sniffnet}/bin/sniffnet";
     capabilities = "cap_net_raw,cap_net_admin=eip";
