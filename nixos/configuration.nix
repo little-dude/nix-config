@@ -24,13 +24,13 @@
     ./xserver.nix
     ./virtualization.nix
     ./printing.nix
-    ./steam.nix
+    # ./steam.nix
     ./on-the-go.nix
-    ./ai.nix
+    # ./ai.nix
     ./nix-utils.nix
     ./proton-vpn.nix
     # running gns3-server locally doesn't work.. We're now using a virtualbox VM
-    ./gns3.nix
+    # ./gns3.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
