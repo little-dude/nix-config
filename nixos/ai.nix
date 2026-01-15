@@ -1,10 +1,7 @@
 # Ref (although there are lots of bits we didn't use):
 # https://mikelev.in/futureproof/nixos-nvidia-cuda-ollama/#working-nvidia-configuration-example
 {pkgs, ...}: {
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+  services.ollama.package = [pkgs.ollama-cuda];
   environment.systemPackages = [pkgs.oterm];
   services.open-webui = {
     package = pkgs.open-webui;
