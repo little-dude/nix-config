@@ -162,6 +162,8 @@
     just
     inetutils
     xterm
+    veracrypt
+    claude-code
   ];
 
   services.sshd.enable = true;

@@ -21,7 +21,7 @@
       lazy-nvim
     ];
 
-    extraLuaConfig = let
+    initLua = let
       plugins = with pkgs.vimPlugins; [
         # LazyVim
         LazyVim
