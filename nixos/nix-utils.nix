@@ -17,7 +17,7 @@
     pkgs.nixd
 
     # Helpers for running foreign binaries on NixOS
-    inputs.nix-alien.packages.${pkgs.system}.nix-alien
+    inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien
     # FHS environment https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
     (
       let
