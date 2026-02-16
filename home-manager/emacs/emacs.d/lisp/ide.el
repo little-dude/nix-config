@@ -24,12 +24,8 @@
   :commands projectile-mode
   :init
   (projectile-mode +1)
-  ;; :config
-  ;; (counsel-projectile-mode)
   :bind
   (:map projectile-mode-map
-        ;; Not sure I want to use Super in emacs, since I use it a lot in gnome
-        ;; ("s-p" . projectile-command-map)
         ("C-c p" . projectile-command-map)))
 
 (use-package counsel-projectile

@@ -19,10 +19,6 @@
 ;; Make window title the buffer name
 (setq-default frame-title-format '("%b"))
 
-;; customize font
-;; TODO: make this dynamic, maybe with hydra?
-;; (set-frame-font "-CYEL-Iosevka-normal-normal-normal-*-18-*-*-*-d-0-iso10646-1")
-
 ;; Display line number except for certain modes
 (global-display-line-numbers-mode t) ; requires emacs 26
 (dolist (mode '(message-buffer-mode-hook
@@ -58,23 +54,7 @@
 ;; =============================== Theme ===============================
 (use-package atom-one-dark-theme
   :config
-  (load-theme 'atom-one-dark t)
-  (custom-theme-set-faces
-   'atom-one-dark
-   ;; - see which face we want to customize: C-u C-x =
-   ;; - describe a face: `describe-face`
-   ;; - list colors: `list-colors-display`
-   ;; - list of attributes we can customize: https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bthemes/theming#attributes
-   ;;
-   ;; The cyan is pretty terrible when working with lots of keywords with hiccup
-   ;; Other things I tried:
-   ;; - (:foreground "#E5C07B") a nice yellow but still a bit tiring. Could be used for something else though
-   ;; - (:foreground "sienna") a maroon that is pretty warm but also quite ugly.
-   '(clojure-keyword-face ((t (:foreground "seashell4" :slant italic))))
-   '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat"))))
-   '(rainbow-delimiters-unmatched-face ((t (:background "dark gray" :foreground "red"))))))
-;; (use-package doom-themes)
-;; (load-theme 'doom-palenight t)
+  (load-theme 'atom-one-dark t))
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))

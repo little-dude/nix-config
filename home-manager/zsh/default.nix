@@ -2,7 +2,7 @@
   pkgs,
   config,
   ...
-}: rec {
+}: {
   home.packages = [pkgs.starship];
   programs.zsh = {
     enable = true;
@@ -49,7 +49,7 @@
 
   home.file = {
     "starship-prompt.toml" = {
-      target = "${programs.zsh.dotDir}/starship-prompt.toml";
+      target = "${config.programs.zsh.dotDir}/starship-prompt.toml";
       source = ./starship-prompt.toml;
     };
   };

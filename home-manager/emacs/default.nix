@@ -10,14 +10,12 @@
     enable = true;
     extraPackages = (
       epkgs: (with epkgs; [
-        doom-themes
         doom-modeline
         all-the-icons
         direnv
         gleam-ts-mode
         use-package
         use-package-chords
-        markdown-toc
         magit
         company
         # See: https://github.com/tigersoldier/company-lsp/issues/147
