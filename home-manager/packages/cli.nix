@@ -50,5 +50,6 @@
     yt-dlp
     tokei
     xan
+    dfc
   ];
 }

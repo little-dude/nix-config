@@ -11,5 +11,13 @@
 
     # nix tools
     nix-output-monitor
+    alejandra
+
+    # shell
+    shellcheck
+
+    # database
+    pgcli
+    pgformatter
   ];
 }
