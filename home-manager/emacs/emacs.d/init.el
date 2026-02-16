@@ -10,11 +10,6 @@
 (load-file "~/.emacs.d/lisp/ide.el")
 (load-file "~/.emacs.d/lisp/git.el")
 
-;; TMP https://github.com/magit/magit/issues/5011
-(defun seq-keep (function sequence)
-  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
-  (delq nil (seq-map function sequence)))
-
 (use-package json-mode
   :mode ("\\.json$" . json-mode))
 
@@ -22,11 +17,7 @@
   :mode ("\\.ya?ml$" . yaml-mode))
 
 (use-package direnv
-  :config
-  ;; Ensures that external dependencies are available before they are
-  ;; called. See: https://github.com/wbolster/emacs-direnv/issues/17
-  (add-hook 'prog-mode-hook #'direnv--maybe-update-environment)
-  (direnv-mode 1))
+  :config (direnv-mode))
 
 (use-package nix-mode
   :mode "\\.nix\\'")
@@ -40,8 +31,8 @@
 (use-package command-log-mode)
 
 (use-package rustic
+  :ensure t
   :config
-  (setq rustic-lsp-server 'rust-analyzer)
   (unbind-key "C-c C-c C-t" rustic-mode-map)
   ;; when passing custom test args with rustic-test-arguments, we need
   ;; to run rustic-cargo-test-rerun instead of rustic-cargo-test
@@ -62,5 +53,15 @@
   :init
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-enable-undo-in-region nil)
-  (setq undo-tree-history-directory-alist '(("." . "~/emacs.d/undo")))
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (global-undo-tree-mode))
+
+;; Use the tree-sitter mode by default Note that there's a gotcha with
+;; the hooks:
+;; https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+(setq major-mode-remap-alist
+ '((yaml-mode . yaml-ts-mode)
+   (bash-mode . bash-ts-mode)
+   (json-mode . json-ts-mode)
+   (css-mode . css-ts-mode)
+   (python-mode . python-ts-mode)))

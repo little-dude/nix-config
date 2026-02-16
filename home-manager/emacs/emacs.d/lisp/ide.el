@@ -35,19 +35,29 @@
 (use-package counsel-projectile
   :init (counsel-projectile-mode +1))
 
+;; lsp-mode uses yasnippet to expand snippet completions (e.g. function signatures with placeholders).
+;; Without it, those completions silently fail.
+(use-package yasnippet
+  :hook (lsp-mode . yas-minor-mode))
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :diminish lsp-mode
   :init
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (gleam-ts-mode . lsp-deferred)
+  (setq
+   lsp-keymap-prefix "C-c l")
   :config
-  (lsp-enable-which-key-integration t))
+  (lsp-enable-which-key-integration t)
+  :custom
+  (lsp-disabled-clients '(pylsp))
+  :hook ((gleam-ts-mode . lsp-deferred)
+         (python-ts-mode . (lambda ()
+                             (direnv-update-environment)
+                             (lsp-deferred))))
+)
 
-;; https://github.com/MasseR/nix-conf-emacs/commit/f4287c2b34128b0dde61f58ada4e474e1ed096dc
-(use-package lsp-completion
-  :config
-  (lsp-inline-completion-mode))
+(use-package lsp-pyright
+  :hook (python-ts-mode . (lambda () (require 'lsp-pyright))))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
@@ -60,28 +70,5 @@
 
 (use-package yang-mode)
 
-(use-package elpy
-  :ensure t
-  :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
-
-(use-package typst-ts-mode
-  :mode (rx ".typst" eos))
-
 (use-package gleam-ts-mode
   :mode (rx ".gleam" eos))
-;; TODO: automatically install the tree sitter grammar:
-;; See:
-;; - https://nohzafk.github.io/posts/2024-06-21-use-gleam-ts-mode-in-doom-emacs/
-;; - https://discourse.doomemacs.org/t/difference-between-after-and-after/3489/2
-;;
-;; (after! gleam-ts-mode
-;;   (unless (treesit-language-available-p 'gleam)
-;;     ;; compile the treesit grammar file the first time
-;;     (gleam-ts-install-grammar)))
-;;
-;; FIXME: I can't get this to work.
-;;
-;; (add-hook 'gleam-ts-mode-hook
-;;           (lambda () (add-hook 'before-save-hook 'gleam-format nil t)))

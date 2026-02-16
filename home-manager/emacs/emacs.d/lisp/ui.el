@@ -51,6 +51,10 @@
 ;; Lockfiles unfortunately cause more pain than benefit
 (setq create-lockfiles nil)
 
+(use-package typst-ts-mode
+  :custom
+  (typst-ts-mode-watch-options "--open"))
+
 ;; =============================== Theme ===============================
 (use-package atom-one-dark-theme
   :config
@@ -102,9 +106,7 @@
 (use-package treemacs-evil
   :after treemacs evil
   :bind
-  (("M-l" . 'evil-window-right))
-  :config
-  (setq evil-want-minibuffer t))
+   (("M-l" . evil-window-right)))
 
 (use-package treemacs-projectile
   :after treemacs projectile)

@@ -3,6 +3,7 @@
     pkgs.emacs-all-the-icons-fonts
     # pkgs.tree-sitter-grammars.tree-sitter-gleam
     pkgs.tree-sitter-grammars.tree-sitter-typst
+    pkgs.pyright
   ];
   services.emacs.enable = true;
   programs.emacs = {
@@ -34,7 +35,9 @@
         treemacs-projectile
         treemacs-all-the-icons
         treemacs-magit
+        yasnippet
         lsp-mode
+        lsp-pyright
         lsp-treemacs
         lsp-ui
         rustic
@@ -50,7 +53,6 @@
         swiper
         which-key
         helpful
-        elpy
         yaml-mode
         # we don't use helm but it's needed to display rust documentation
         # see: https://github.com/brotzeit/rustic#inline-documentation

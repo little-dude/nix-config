@@ -40,56 +40,26 @@
   (define-key evil-normal-state-map (kbd "C-=") 'balance-windows)
   (define-key evil-normal-state-map (kbd "C-s z") 'delete-other-windows)
 
-  ;; (define-key evil-normal-state-map (kbd "no") 'highlight-remove-all)
   )
 
+;; Treat _ and - as word characters in evil word motions.
 ;; See https://emacs.stackexchange.com/a/9584/22105
-(defadvice evil-inner-word (around iw-motion activate)
+(defun my/evil-word-motion-with-underscores (orig-fn &rest args)
   (let ((table (copy-syntax-table (syntax-table))))
     (modify-syntax-entry ?_ "w" table)
     (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
+    (with-syntax-table table (apply orig-fn args))))
 
-(defadvice evil-forward-word-begin (around w-motion activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
-
-(defadvice evil-forward-word-end (around e-motion activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
-
-(defadvice evil-backward-word-begin (around b-motion activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
-
-(defadvice evil-backward-word-end (around ge-motion activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
-
-(defadvice evil-a-word (around a-word activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
-
-(defadvice evil-inner-word (around inner-word activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table ad-do-it)))
+(dolist (fn '(evil-inner-word
+              evil-a-word
+              evil-forward-word-begin
+              evil-forward-word-end
+              evil-backward-word-begin
+              evil-backward-word-end))
+  (advice-add fn :around #'my/evil-word-motion-with-underscores))
 
 (use-package evil-collection
+  :custom (evil-collection-setup-minibuffer t)
   :after evil
   :config
   (evil-collection-init))
-
-;; For some reason, setting that in evil's `:config` doesn't work
-(evil-mode 1)
