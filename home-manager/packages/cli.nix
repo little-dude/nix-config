@@ -44,6 +44,10 @@
     usbutils
     lshw
 
+    # backup
+    borgbackup
+    vorta
+
     # misc
     neofetch
     xsel
