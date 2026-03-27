@@ -1,5 +1,5 @@
 deploy:
-  nixos-rebuild switch --flake .
+  sudo nixos-rebuild switch --flake .
 
 debug:
   nixos-rebuild switch --flake . --show-trace --verbose
@@ -10,10 +10,8 @@ format:
 up:
   nix flake update
 
-# Update specific input
-# usage: make upp i=home-manager
 upp:
-  nix flake update $(i)
+  nix flake update
 
 history:
   nix profile history --profile /nix/var/nix/profiles/system
