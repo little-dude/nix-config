@@ -49,7 +49,7 @@
     vorta
 
     # misc
-    neofetch
+    fastfetch
     xsel
     yt-dlp
     tokei
