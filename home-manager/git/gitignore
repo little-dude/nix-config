@@ -1,5 +1,6 @@
 # Claude
 .claude/
+/.agent-shell/
 
 # Compiled source
 *.com
