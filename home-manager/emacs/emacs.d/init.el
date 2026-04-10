@@ -40,6 +40,9 @@
 (use-package rustic
   :after evil
   :ensure t
+  :hook (rustic-mode . (lambda ()
+                         (setq-local lsp-file-watch-ignored-directories
+                                     (cons "[/\\\\]target\\'" lsp-file-watch-ignored-directories))))
   :config
   (unbind-key "C-c C-c C-t" rustic-mode-map)
   ;; when passing custom test args with rustic-test-arguments, we need
