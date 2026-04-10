@@ -13,6 +13,10 @@
     nix-output-monitor
     alejandra
 
+    # misc dev tools
+    exercism
+    mermaid-cli
+
     # shell
     shellcheck
 
