@@ -48,6 +48,7 @@
 (setq create-lockfiles nil)
 
 (use-package typst-ts-mode
+  :after evil
   :custom
   (typst-ts-mode-watch-options "--open"))
 

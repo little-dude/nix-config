@@ -4,22 +4,29 @@
 (eval-when-compile
   (require 'use-package))
 
-(load-file "~/.emacs.d/lisp/ui.el")
 (load-file "~/.emacs.d/lisp/evil.el")
+(load-file "~/.emacs.d/lisp/ui.el")
 (load-file "~/.emacs.d/lisp/edit.el")
 (load-file "~/.emacs.d/lisp/ide.el")
 (load-file "~/.emacs.d/lisp/git.el")
 
+(use-package elisp-mode
+  :ensure nil
+  :after evil)
+
 (use-package json-mode
+  :after evil
   :mode ("\\.json$" . json-mode))
 
 (use-package yaml-mode
+  :after evil
   :mode ("\\.ya?ml$" . yaml-mode))
 
 (use-package direnv
   :config (direnv-mode))
 
 (use-package nix-mode
+  :after evil
   :mode "\\.nix\\'")
 
 (use-package dockerfile-mode
@@ -31,6 +38,7 @@
 (use-package command-log-mode)
 
 (use-package rustic
+  :after evil
   :ensure t
   :config
   (unbind-key "C-c C-c C-t" rustic-mode-map)

@@ -64,7 +64,8 @@
   (setq flycheck-mode-globals '(not rust-mode rustic-mode))
   (global-flycheck-mode))
 
-(use-package yang-mode)
+(use-package yang-mode
+  :after evil)
 
 (use-package gleam-ts-mode
   :mode (rx ".gleam" eos))
