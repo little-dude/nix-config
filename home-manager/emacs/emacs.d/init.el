@@ -9,6 +9,7 @@
 (load-file "~/.emacs.d/lisp/edit.el")
 (load-file "~/.emacs.d/lisp/ide.el")
 (load-file "~/.emacs.d/lisp/git.el")
+(load-file "~/.emacs.d/lisp/org.el")
 
 (use-package elisp-mode
   :ensure nil

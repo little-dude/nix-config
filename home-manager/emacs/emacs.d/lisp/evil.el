@@ -64,5 +64,5 @@
   :config
   (evil-collection-init
    '(company compile diff-mode dired flycheck helpful ivy
-     magit magit-section magit-repos minibuffer rg
+     magit magit-section magit-repos minibuffer org rg
      which-key xref)))

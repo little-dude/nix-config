@@ -4,6 +4,7 @@
     # pkgs.tree-sitter-grammars.tree-sitter-gleam
     pkgs.tree-sitter-grammars.tree-sitter-typst
     pkgs.pyright
+    pkgs.flameshot
   ];
   services.emacs.enable = true;
   programs.emacs = {
@@ -36,6 +37,10 @@
         yasnippet
         lsp-mode
         lsp-pyright
+        org-modern
+        org-rich-yank
+        org-download
+        evil-org
         lsp-treemacs
         lsp-ui
         rustic
