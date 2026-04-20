@@ -26,7 +26,10 @@
   :config
   (require 'evil-org-agenda)
   (evil-org-set-key-theme '(navigation insert textobjects calendar))
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  (evil-define-key 'normal org-mode-map
+    (kbd "C-c .") 'org-time-stamp
+    (kbd "C-c !") 'org-time-stamp-inactive))
 
 (use-package org-modern
   :after org
