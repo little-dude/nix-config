@@ -45,7 +45,8 @@
         lsp-ui
         rustic
         auto-dim-other-buffers
-        atom-one-dark-theme
+        doom-themes
+      rainbow-mode
         command-log-mode
         dockerfile-mode
         nix-mode

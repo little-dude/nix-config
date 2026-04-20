@@ -53,22 +53,58 @@
   (typst-ts-mode-watch-options "--open"))
 
 ;; =============================== Theme ===============================
-(use-package atom-one-dark-theme
+(use-package doom-themes
   :config
-  (load-theme 'atom-one-dark t))
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-snazzy t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
+  (doom-themes-treemacs-config)
+  ;; override theme faces after loading — grouped here so they're easy to find.
+  ;; NOTE: must use custom-set-faces (not use-package :custom-face) because
+  ;; load-theme clears face-override-spec set by :custom-face.
+  (custom-set-faces
+   ;; search — theme defaults are too saturated (#3c8bb2 bg + red fg)
+   '(lazy-highlight ((t (:background "#33353f" :weight bold))))
+   '(isearch ((t (:background "#3e4150" :weight bold :underline t))))
+   ;; highlight — bright cyan (#57c7ff) is distracting in minibuffer completions
+   '(highlight ((t (:background "#3e4150"))))
+   ;; lsp — symbol occurrences: theme bg (#365972) is too flashy
+   '(lsp-face-highlight-textual ((t (:foreground "#ff5c57" :weight bold :slant italic :background "#282a36"))))
+   ;; lsp-ui-doc — drop region inherit to avoid ugly bg on hovered symbol
+   '(lsp-ui-doc-highlight-hover ((t (:inherit nil :background "#282a36" :weight bold :foreground "#ff5c57"))))
+   ;; lsp-ui-doc — match code bg so tooltip blends in (tooltip default is darker)
+   '(lsp-ui-doc-background ((t (:background "#282a36"))))
+   '(lsp-ui-doc-header ((t (:foreground "#f3f99d" :background "#33353f" :weight bold))))
+   ;; markdown — code blocks in lsp-ui tooltips had gray (#78787e) bg
+   '(markdown-code-face ((t (:background "#282a36"))))
+   ;; magit — subtler diff backgrounds (theme defaults are too saturated)
+   '(magit-diff-added ((t (:background "#2a3325" :foreground "#57c28d"))))
+   '(magit-diff-removed ((t (:background "#332228" :foreground "#c27070"))))
+   '(magit-diff-added-highlight ((t (:background "#2f3b2a" :foreground "#6dd9a0"))))
+   '(magit-diff-removed-highlight ((t (:background "#3b272d" :foreground "#d98585"))))
+   ;; magit — brighten unchanged lines for better contrast
+   '(magit-diff-context ((t (:foreground "#c0c0c0"))))
+   '(magit-diff-context-highlight ((t (:foreground "#e0e0e0" :background "#242631"))))
+   ;; rainbow-delimiters
+   '(rainbow-delimiters-unmatched-face ((t (:background "dark gray" :foreground "red"))))
+   '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat"))))))
+
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 
-;; we highlight the current line, but it's too pale with atom-one-dark so we override it here
-(set-face-background hl-line-face "gray0")
+;; ;; we highlight the current line, but it's too pale with doom-one so we override it here
+;; (set-face-background hl-line-face "gray0")
+
+;; colorize hex color strings in buffers
+(use-package rainbow-mode
+  :hook (help-mode . rainbow-mode))
 
 ;; colorful parenthesis
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode)
-  :custom-face
-  (rainbow-delimiters-unmatched-face ((t (:background "dark gray" :foreground "red"))))
-  (rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))
+  :hook (prog-mode . rainbow-delimiters-mode))
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
