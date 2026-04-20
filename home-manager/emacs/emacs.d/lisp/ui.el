@@ -143,20 +143,42 @@
   (setq uniquify-after-kill-buffer-p t)     ; rename after killing uniquified
   (setq uniquify-ignore-buffers-re "^\\*")) ; don't muck with special buffers
 
-;; ======================== Ivy ========================
-(use-package ivy
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  ;; by default, the regexp used by ivy starts with ^, which is
-  ;; annoying. See:
-  ;; https://emacs.stackexchange.com/a/38842/22105
-  (setq ivy-initial-inputs-alist nil))
+;; ======================== Minibuffer completion (VOMPECCC) ========================
+(use-package vertico
+  :init (vertico-mode)
+  :custom
+  (enable-recursive-minibuffers t))
 
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :init (marginalia-mode))
+
+;; Persist minibuffer history so Vertico can sort by recency.
+(use-package savehist
+  :init (savehist-mode))
+
+(use-package consult
+  :bind (("C-s"   . consult-line)
+         ("C-r"   . consult-line)
+         ("C-x b" . consult-buffer)
+         ("M-y"   . consult-yank-pop)
+         ("M-g g" . consult-goto-line)
+         ("M-g i" . consult-imenu)
+         ("M-s r" . consult-ripgrep)
+         (:map minibuffer-local-map
+               ("C-r" . consult-history))))
+
+(use-package embark
+  :bind (("C-." . embark-act)
+         ("C-h B" . embark-bindings)))
+
+(use-package embark-consult
+  :after (embark consult)
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package which-key
   :init (which-key-mode)
@@ -164,21 +186,7 @@
   :config
   (setq which-key-idle-delay 0.2))
 
-(use-package counsel
-  :after ivy
-  :config
-  (counsel-mode)
-  :bind ((:map minibuffer-local-map ("C-r" . 'counsel-minibuffer-history))))
-
-(use-package swiper
-  :after ivy
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
-
 (use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
   :bind
   ([remap describe-function] . helpful-function)
   ([remap describe-symbol] . helpful-symbol)

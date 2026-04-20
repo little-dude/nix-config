@@ -18,9 +18,8 @@
         use-package
         use-package-chords
         magit
-        company
-        # See: https://github.com/tigersoldier/company-lsp/issues/147
-        # company-lsp
+        corfu
+        cape
         flycheck
         rg
         projectile
@@ -50,11 +49,12 @@
         command-log-mode
         dockerfile-mode
         nix-mode
-        ivy
-        ivy-rich
-        counsel
-        counsel-projectile
-        swiper
+        vertico
+        orderless
+        marginalia
+        consult
+        embark
+        embark-consult
         which-key
         helpful
         yaml-mode

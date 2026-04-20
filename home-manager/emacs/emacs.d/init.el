@@ -33,6 +33,9 @@
 (use-package dockerfile-mode
   :config (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
+(use-package gleam-ts-mode
+  :mode (rx ".gleam" eos))
+
 ;; Allows to see which commands are being called:
 ;; - command-log-mode
 ;; - clm/open-command-log-buffer

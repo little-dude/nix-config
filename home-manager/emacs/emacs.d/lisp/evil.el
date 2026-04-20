@@ -63,6 +63,6 @@
   :after evil
   :config
   (evil-collection-init
-   '(company compile diff-mode dired flycheck helpful ivy
-     magit magit-section magit-repos minibuffer org rg
+   '(compile consult corfu diff-mode dired embark flycheck helpful
+     magit magit-section magit-repos minibuffer org rg vertico
      which-key xref)))

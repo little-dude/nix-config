@@ -1,24 +1,28 @@
 ;; All the packages that turn emacs into a full-blown IDE with code completion, linting, etc.
 
-(use-package company
-  :commands company-tng-configure-default
+(use-package corfu
   :custom
   ;; delay to start completion
-  (company-idle-delay 0.5)
+  (corfu-auto-delay 0.5)
   ;; nb of chars before triggering completion
-  (company-minimum-prefix-length 3)
-
-  :config
-  ;; enable company-mode in all buffers
-  (global-company-mode)
-
+  (corfu-auto-prefix 3)
+  (corfu-auto t)
+  :custom-face
+  (corfu-annotations ((t (:foreground "gray50" :slant italic :underline nil))))
+  :init
+  (global-corfu-mode)
   :bind
   ;; use <C> instead of <M> to navigate completions
-  (:map company-active-map
-	      ("M-n" . nil)
-	      ("M-p" . nil)
-	      ("C-n" . #'company-select-next)
-	      ("C-p" . #'company-select-previous)))
+  (:map corfu-map
+        ("M-n" . nil)
+        ("M-p" . nil)
+        ("C-n" . #'corfu-next)
+        ("C-p" . #'corfu-previous)))
+
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package projectile
   :commands projectile-mode
@@ -26,10 +30,9 @@
   (projectile-mode +1)
   :bind
   (:map projectile-mode-map
-        ("C-c p" . projectile-command-map)))
-
-(use-package counsel-projectile
-  :init (counsel-projectile-mode +1))
+        ("C-c p" . projectile-command-map))
+  :config
+  (projectile-load-known-projects))
 
 ;; lsp-mode uses yasnippet to expand snippet completions (e.g. function signatures with placeholders).
 ;; Without it, those completions silently fail.
@@ -37,7 +40,7 @@
   :hook (lsp-mode . yas-minor-mode))
 
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
+  :commands lsp
   :diminish lsp-mode
   :init
   (setq
@@ -46,8 +49,9 @@
   (lsp-enable-which-key-integration t)
   :custom
   (lsp-disabled-clients '(pylsp))
-  :hook ((gleam-ts-mode . lsp-deferred)
-         (python-ts-mode . (lambda ()
+  ;; let Corfu drive completion-at-point instead of lsp-mode's own company glue
+  (lsp-completion-provider :none)
+  :hook ((python-ts-mode . (lambda ()
                              (direnv-update-environment)
                              (lsp-deferred))))
 )
@@ -66,6 +70,3 @@
 
 (use-package yang-mode
   :after evil)
-
-(use-package gleam-ts-mode
-  :mode (rx ".gleam" eos))
