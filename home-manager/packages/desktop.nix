@@ -7,6 +7,7 @@
     # communication
     signal-desktop
     discord
+    slack
 
     # media
     vlc
