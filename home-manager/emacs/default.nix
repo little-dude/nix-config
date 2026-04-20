@@ -92,12 +92,7 @@
     # - describe the current font with `C-u C-x =`
     # - dynamically change the font: `M-x set-frame-font`
     #
-    # Note that with iosevka the icons aren't found, not sure why. So
-    # we just use hack for now.
-    #
-    # "Emacs.Font" = "-UKWN-Iosevka Nerd Font Propo-regular-normal-normal-*-15-*-*-*-*-0-iso10646-1";
-    # "Emacs.Font" = "-SRC-Hack Nerd Font-regular-normal-normal-*-15-*-*-*-m-0-iso10646-1";
-    "Emacs.Font" = "-CTDB-FiraCode Nerd Font-regular-normal-normal-*-*-*-*-*-m-0-iso10646-1";
+    "Emacs.Font" = "Iosevka Nerd Font Mono-11";
   };
 
   # Home manager's emacs service doesn't provide a desktop entry for the emacs
