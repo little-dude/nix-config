@@ -10,6 +10,7 @@
 (load-file "~/.emacs.d/lisp/ide.el")
 (load-file "~/.emacs.d/lisp/git.el")
 (load-file "~/.emacs.d/lisp/org.el")
+(load-file "~/.emacs.d/lisp/agent-shell.el")
 
 (use-package elisp-mode
   :ensure nil

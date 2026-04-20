@@ -4,7 +4,9 @@
     # pkgs.tree-sitter-grammars.tree-sitter-gleam
     pkgs.tree-sitter-grammars.tree-sitter-typst
     pkgs.pyright
+    pkgs.claude-agent-acp
     pkgs.flameshot
+    pkgs.wl-clipboard
   ];
   services.emacs.enable = true;
   programs.emacs = {
@@ -65,6 +67,9 @@
         ini-mode
         protobuf-mode
         yang-mode
+        shell-maker
+        acp
+        agent-shell
       ])
     );
   };
