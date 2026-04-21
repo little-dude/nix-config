@@ -10,6 +10,8 @@
     vimAlias = true;
     viAlias = true;
     defaultEditor = true;
+    withRuby = false;
+    withPython3 = false;
     extraPackages = with pkgs; [
       # LazyVim
       lua-language-server
