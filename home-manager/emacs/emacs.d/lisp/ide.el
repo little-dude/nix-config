@@ -68,5 +68,13 @@
   (setq flycheck-mode-globals '(not rust-mode rustic-mode))
   (global-flycheck-mode))
 
+(use-package typst-ts-mode
+  :after evil
+  :mode ("\\.typ\\'" "\\.typst\\'")
+  :custom
+  (typst-ts-mode-watch-options "--open")
+  :hook (typst-ts-mode . (lambda ()
+                           (lsp-deferred))))
+
 (use-package yang-mode
   :after evil)

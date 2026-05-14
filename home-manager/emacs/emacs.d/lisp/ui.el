@@ -47,11 +47,6 @@
 ;; Lockfiles unfortunately cause more pain than benefit
 (setq create-lockfiles nil)
 
-(use-package typst-ts-mode
-  :after evil
-  :custom
-  (typst-ts-mode-watch-options "--open"))
-
 ;; =============================== Theme ===============================
 (use-package doom-themes
   :config

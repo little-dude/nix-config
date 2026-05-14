@@ -23,6 +23,7 @@
     # document processing
     pandoc
     typst
+    tinymist
     pdftk
     pdfchain
     qpdf

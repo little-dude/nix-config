@@ -2,7 +2,6 @@
   home.packages = [
     pkgs.emacs-all-the-icons-fonts
     # pkgs.tree-sitter-grammars.tree-sitter-gleam
-    pkgs.tree-sitter-grammars.tree-sitter-typst
     pkgs.pyright
     pkgs.claude-agent-acp
     pkgs.flameshot
@@ -64,6 +63,9 @@
         # see: https://github.com/brotzeit/rustic#inline-documentation
         # helm-ag
         typst-ts-mode
+        (treesit-grammars.with-grammars (grammars: [
+          grammars.tree-sitter-typst
+        ]))
         ini-mode
         protobuf-mode
         yang-mode
