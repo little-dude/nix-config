@@ -8,6 +8,7 @@
     signal-desktop
     discord
     slack
+    element-desktop
 
     # media
     vlc
