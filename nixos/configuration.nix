@@ -59,6 +59,7 @@
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     users.little-dude = import ../home-manager/home.nix;
+    users.guest = import ../home-manager/guest-home.nix;
     # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
   };
 
@@ -131,6 +132,16 @@
     group = "users";
     extraGroups = ["wheel"];
     shell = pkgs.bash;
+  };
+
+  # Locked-down guest account: no wheel/sudo, own persistent home.
+  users.users.guest = {
+    isNormalUser = true;
+    uid = 1001;
+    group = "users";
+    extraGroups = ["networkmanager"];
+    shell = pkgs.bash;
+    initialPassword = "guest";
   };
   programs.zsh.enable = true;
   programs.fish.enable = true;
