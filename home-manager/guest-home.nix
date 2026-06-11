@@ -8,15 +8,6 @@
     ./gnome.nix     # desktop tweaks, no personal data
   ];
 
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-    ];
-    config.allowUnfree = true;
-  };
-
   home = {
     username = "guest";
     homeDirectory = "/home/guest";

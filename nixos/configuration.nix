@@ -57,6 +57,10 @@
   };
 
   home-manager = {
+    # Use the system-level pkgs (with all nixpkgs.overlays, including the
+    # emacs-overlay) instead of a separate per-user nixpkgs instance. This is
+    # why the home configs no longer set their own nixpkgs.overlays/config.
+    useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs outputs;};
     users.little-dude = import ../home-manager/home.nix;
     users.guest = import ../home-manager/guest-home.nix;
