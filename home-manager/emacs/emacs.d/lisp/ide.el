@@ -76,5 +76,40 @@
   :hook (typst-ts-mode . (lambda ()
                            (lsp-deferred))))
 
+;; TypeScript / TSX. typescript-ts-mode and tsx-ts-mode are built into emacs
+;; (need the tree-sitter grammars, provided via nix). Remap the classic modes to
+;; the tree-sitter ones and start lsp (typescript-language-server).
+(use-package typescript-ts-mode
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.mts\\'" . typescript-ts-mode)
+         ("\\.cts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode))
+  :hook ((typescript-ts-mode . (lambda ()
+                                 (direnv-update-environment)
+                                 (lsp-deferred)))
+         (tsx-ts-mode . (lambda ()
+                          (direnv-update-environment)
+                          (lsp-deferred)))))
+
+;; Svelte. svelte-mode is the .svelte major mode; lsp-svelte (bundled with
+;; lsp-mode) drives svelte-language-server.
+(use-package svelte-mode
+  :mode "\\.svelte\\'"
+  :hook (svelte-mode . (lambda ()
+                         (direnv-update-environment)
+                         (lsp-deferred))))
+
+;; Prefer the project-local node_modules/.bin (pinned prettier, eslint,
+;; typescript, etc.) over globally installed tools.
+(use-package add-node-modules-path
+  :hook ((typescript-ts-mode tsx-ts-mode svelte-mode) . add-node-modules-path))
+
+;; Asynchronous format-on-save via prettier.
+(use-package apheleia
+  :init (apheleia-global-mode +1)
+  :config
+  (dolist (mode '(typescript-ts-mode tsx-ts-mode svelte-mode))
+    (setf (alist-get mode apheleia-mode-alist) 'prettier)))
+
 (use-package yang-mode
   :after evil)

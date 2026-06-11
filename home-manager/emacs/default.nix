@@ -6,6 +6,13 @@
     pkgs.claude-agent-acp
     pkgs.flameshot
     pkgs.wl-clipboard
+    # TypeScript / Svelte LSP servers and tooling. These are system binaries,
+    # not emacs packages. `lsp-svelte` (built into lsp-mode) drives
+    # svelte-language-server, which delegates TS work to typescript-language-server.
+    pkgs.svelte-language-server
+    pkgs.typescript-language-server
+    pkgs.typescript # global tsc/tsserver fallback for projects without a local install
+    pkgs.prettier # formatter used by apheleia for ts/tsx/svelte
   ];
   services.emacs.enable = true;
   programs.emacs = {
@@ -63,8 +70,18 @@
         # see: https://github.com/brotzeit/rustic#inline-documentation
         # helm-ag
         typst-ts-mode
+        # TypeScript + Svelte development. typescript-ts-mode/tsx-ts-mode are
+        # built into emacs; svelte-mode provides the .svelte major mode.
+        # add-node-modules-path prefers a project's local node_modules/.bin so
+        # its pinned prettier/eslint/tsserver versions win. apheleia formats
+        # asynchronously on save (via prettier).
+        svelte-mode
+        add-node-modules-path
+        apheleia
         (treesit-grammars.with-grammars (grammars: [
           grammars.tree-sitter-typst
+          grammars.tree-sitter-typescript
+          grammars.tree-sitter-tsx
         ]))
         ini-mode
         protobuf-mode

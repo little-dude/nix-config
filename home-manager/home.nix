@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   pkgs,
   ...
@@ -26,6 +27,10 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+
+      # Emacs packages should always come from the emacs-overlay (full MELPA set,
+      # kept current daily) rather than the smaller nixpkgs emacsPackages set.
+      (import inputs.emacs-overlay)
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
