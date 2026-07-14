@@ -18,6 +18,7 @@
     ./zsh
     ./emacs
     ./gnome.nix
+    ./capswap.nix
   ];
 
   home = {

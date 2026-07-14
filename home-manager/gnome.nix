@@ -1,25 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   # Generated with dconf2nix
   dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      sources = [
-        (lib.hm.gvariant.mkTuple [
-          "xkb"
-          "us"
-        ])
-      ];
-      # Swap caps lock and esc. This was first set with gnome-tweaks
-      # then dconf2nix for the conversion
-      xkb-options = [
-        "terminate:ctrl_alt_bksp"
-        "caps:swapescape"
-        "eurosign:e"
-      ];
-    };
     # alt+tab only switches through the windows in the current
     # workspace
     "org/gnome/shell/app-switcher" = {
