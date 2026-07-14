@@ -56,6 +56,22 @@
                              (lsp-deferred))))
 )
 
+;; Tailwind CSS LSP. lsp-tailwindcss ships with lsp-mode and launches the server
+;; as `node <server-path> --stdio`; with no path it builds a broken `node
+;; --stdio` (the error we saw on .css/.svelte buffers once the project adopted
+;; Tailwind). Point it at the nix-provided binary and run it as an add-on so it
+;; coexists with the svelte/ts servers; if the binary is somehow missing, disable
+;; the client so it stays quiet instead of failing to spawn.
+(with-eval-after-load 'lsp-mode
+  (require 'lsp-tailwindcss)
+  (let ((server (executable-find "tailwindcss-language-server")))
+    (if server
+        (setq lsp-tailwindcss-add-on-mode t
+              lsp-tailwindcss-server-path server)
+      (add-to-list 'lsp-disabled-clients 'tailwindcss)))
+  ;; lsp-tailwindcss-major-modes doesn't list svelte-mode by default.
+  (add-to-list 'lsp-tailwindcss-major-modes 'svelte-mode))
+
 (use-package lsp-pyright
   :hook (python-ts-mode . (lambda () (require 'lsp-pyright))))
 

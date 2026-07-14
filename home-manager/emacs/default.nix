@@ -12,6 +12,7 @@
     pkgs.svelte-language-server
     pkgs.typescript-language-server
     pkgs.typescript # global tsc/tsserver fallback for projects without a local install
+    pkgs.tailwindcss-language-server # class completion/hover for Tailwind (lsp-tailwindcss)
     pkgs.prettier # formatter used by apheleia for ts/tsx/svelte
   ];
   services.emacs.enable = true;
