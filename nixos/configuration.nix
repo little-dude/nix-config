@@ -180,6 +180,7 @@
     xterm
     veracrypt
     claude-code
+    python3
   ];
 
   services.sshd.enable = true;
