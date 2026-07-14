@@ -23,5 +23,6 @@
     # database
     pgcli
     pgformatter
+    beekeeper-studio
   ];
 }
