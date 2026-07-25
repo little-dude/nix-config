@@ -9,6 +9,7 @@
     discord
     slack
     element-desktop
+    zapzap # unofficial WhatsApp desktop client
 
     # media
     vlc
