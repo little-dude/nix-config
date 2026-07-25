@@ -14,6 +14,7 @@
     vlc
     pavucontrol
     gimp
+    obs-studio
 
     # office & documents
     libreoffice-fresh
