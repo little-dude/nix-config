@@ -51,9 +51,9 @@
   (lsp-disabled-clients '(pylsp))
   ;; let Corfu drive completion-at-point instead of lsp-mode's own company glue
   (lsp-completion-provider :none)
-  :hook ((python-ts-mode . (lambda ()
-                             (direnv-update-environment)
-                             (lsp-deferred))))
+  ;; envrc-mode applies the project env buffer-locally before lsp-deferred
+  ;; actually spawns the server, so no explicit env refresh is needed here.
+  :hook ((python-ts-mode . lsp-deferred))
 )
 
 ;; Tailwind CSS LSP. lsp-tailwindcss ships with lsp-mode and launches the server
@@ -100,20 +100,14 @@
          ("\\.mts\\'" . typescript-ts-mode)
          ("\\.cts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . tsx-ts-mode))
-  :hook ((typescript-ts-mode . (lambda ()
-                                 (direnv-update-environment)
-                                 (lsp-deferred)))
-         (tsx-ts-mode . (lambda ()
-                          (direnv-update-environment)
-                          (lsp-deferred)))))
+  :hook ((typescript-ts-mode . lsp-deferred)
+         (tsx-ts-mode . lsp-deferred)))
 
 ;; Svelte. svelte-mode is the .svelte major mode; lsp-svelte (bundled with
 ;; lsp-mode) drives svelte-language-server.
 (use-package svelte-mode
   :mode "\\.svelte\\'"
-  :hook (svelte-mode . (lambda ()
-                         (direnv-update-environment)
-                         (lsp-deferred))))
+  :hook (svelte-mode . lsp-deferred))
 
 ;; Prefer the project-local node_modules/.bin (pinned prettier, eslint,
 ;; typescript, etc.) over globally installed tools.

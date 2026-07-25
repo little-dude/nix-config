@@ -22,7 +22,7 @@
       epkgs: (with epkgs; [
         doom-modeline
         all-the-icons
-        direnv
+        envrc
         gleam-ts-mode
         use-package
         use-package-chords

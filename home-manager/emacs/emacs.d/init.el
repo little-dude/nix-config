@@ -24,8 +24,11 @@
   :after evil
   :mode ("\\.ya?ml$" . yaml-mode))
 
-(use-package direnv
-  :config (direnv-mode))
+;; Apply each project's direnv environment buffer-locally (successor to the
+;; global-switching `direnv' package). Subprocesses — LSP servers, magit's git
+;; (and thus commit hooks) — inherit the project env from their buffer.
+(use-package envrc
+  :init (envrc-global-mode))
 
 (use-package nix-mode
   :after evil
