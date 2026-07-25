@@ -168,7 +168,6 @@
 
   environment.systemPackages = with pkgs; [
     pciutils
-    audacity
     lshw
     neovim
     firefox
