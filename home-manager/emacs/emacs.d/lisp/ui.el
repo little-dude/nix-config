@@ -142,6 +142,8 @@
 (use-package vertico
   :init (vertico-mode)
   :custom
+  ;; select the first candidate, but allow selecting the prompt
+  (vertico-preselect 'first)
   (enable-recursive-minibuffers t))
 
 (use-package orderless
