@@ -54,7 +54,7 @@
         rustic
         auto-dim-other-buffers
         doom-themes
-      rainbow-mode
+        rainbow-mode
         command-log-mode
         dockerfile-mode
         nix-mode
