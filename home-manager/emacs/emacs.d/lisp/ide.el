@@ -81,7 +81,7 @@
 (use-package flycheck
   :commands global-flycheck-mode
   :init
-  (setq flycheck-mode-globals '(not rust-mode rustic-mode))
+  (setq flycheck-global-modes '(not rust-mode rustic-mode))
   (global-flycheck-mode))
 
 (use-package typst-ts-mode

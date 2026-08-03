@@ -52,6 +52,11 @@
                          (setq-local lsp-file-watch-ignored-directories
                                      (cons "[/\\\\]target\\'" lsp-file-watch-ignored-directories))))
   :config
+  ;; rustic force-enables flycheck from rustic-mode-hook, which runs before
+  ;; envrc-mode applies the buffer-local direnv env (after-change-major-mode-hook),
+  ;; so rustic-flycheck-setup errors with "cannot find cargo". lsp-mode provides
+  ;; rust diagnostics anyway, so drop rustic's eager flycheck activation.
+  (remove-hook 'rustic-mode-hook 'flycheck-mode)
   (unbind-key "C-c C-c C-t" rustic-mode-map)
   ;; when passing custom test args with rustic-test-arguments, we need
   ;; to run rustic-cargo-test-rerun instead of rustic-cargo-test
