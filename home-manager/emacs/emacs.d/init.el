@@ -20,6 +20,11 @@
   :after evil
   :mode ("\\.json$" . json-mode))
 
+(use-package markdown-mode
+  :after evil
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
 (use-package yaml-mode
   :after evil
   :mode ("\\.ya?ml$" . yaml-mode))
