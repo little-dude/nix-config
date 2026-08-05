@@ -59,9 +59,15 @@
   :config
   ;; rustic force-enables flycheck from rustic-mode-hook, which runs before
   ;; envrc-mode applies the buffer-local direnv env (after-change-major-mode-hook),
-  ;; so rustic-flycheck-setup errors with "cannot find cargo". lsp-mode provides
-  ;; rust diagnostics anyway, so drop rustic's eager flycheck activation.
-  (remove-hook 'rustic-mode-hook 'flycheck-mode)
+  ;; so rustic-flycheck-setup errors with "cannot find cargo" — and since the
+  ;; move to fenix there is no global cargo to paper over the ordering. lsp-mode
+  ;; provides rust diagnostics anyway, so drop rustic's eager flycheck
+  ;; activation. rustic only loads rustic-flycheck — which (re-)adds these
+  ;; hooks — once flycheck itself loads, so a bare remove-hook here is silently
+  ;; undone; it must be sequenced after that load.
+  (with-eval-after-load 'rustic-flycheck
+    (remove-hook 'rustic-mode-hook 'flycheck-mode)
+    (remove-hook 'flycheck-mode-hook 'rustic-flycheck-setup))
   (unbind-key "C-c C-c C-t" rustic-mode-map)
   ;; when passing custom test args with rustic-test-arguments, we need
   ;; to run rustic-cargo-test-rerun instead of rustic-cargo-test
