@@ -44,13 +44,23 @@
   :diminish lsp-mode
   :init
   (setq
-   lsp-keymap-prefix "C-c l")
+   lsp-keymap-prefix "C-c l"
+   ;; 100 MB. The default ~800 KB threshold makes GC thrash while parsing
+   ;; large LSP responses, e.g. workspace-wide find-references.
+   gc-cons-threshold (* 100 1024 1024)
+   ;; 1 MB. rust-analyzer replies can be 800 KB–3 MB (find-references in a
+   ;; big workspace); the small default reads them in tiny chunks.
+   read-process-output-max (* 1024 1024))
   :config
   (lsp-enable-which-key-integration t)
   :custom
   (lsp-disabled-clients '(pylsp))
   ;; let Corfu drive completion-at-point instead of lsp-mode's own company glue
   (lsp-completion-provider :none)
+  ;; rust-analyzer gets its own target dir (target/rust-analyzer) so its
+  ;; cargo check / build-script / proc-macro builds don't lock target/
+  ;; against rustic's cargo test.
+  (lsp-rust-analyzer-cargo-target-dir t)
   ;; envrc-mode applies the project env buffer-locally before lsp-deferred
   ;; actually spawns the server, so no explicit env refresh is needed here.
   :hook ((python-ts-mode . lsp-deferred))
