@@ -19,21 +19,7 @@
   programs.emacs = {
     enable = true;
     extraPackages = (
-      epkgs: let
-        # Compile lsp-mode and the extensions that use its accessor macros with
-        # LSP_USE_PLISTS=true so they emit plist (not hash-table) code.
-        # emacs.d/early-init.el sets the same env var at runtime; the compiled
-        # and runtime object representations must match or LSP responses corrupt.
-        #
-        # Only packages that expand lsp-mode's accessor macros at compile time
-        # (lsp-interface, lsp-get/lsp-put, `(&Interface ...)` destructuring) need
-        # this. Across the whole installed load-path that is exactly lsp-mode,
-        # lsp-ui and lsp-treemacs; lsp-pyright and everything else use none.
-        # Wrapping lsp-mode also recompiles its bundled lsp-* clients (lsp-svelte,
-        # lsp-tailwindcss, ...). If you add another separate lsp-*/dap-mode
-        # package that uses these accessors, wrap it here too.
-        withPlists = pkg: pkg.overrideAttrs (_: {LSP_USE_PLISTS = "true";});
-      in (with epkgs; [
+      epkgs: (with epkgs; [
         doom-modeline
         all-the-icons
         envrc
@@ -57,14 +43,14 @@
         treemacs-all-the-icons
         treemacs-magit
         yasnippet
-        (withPlists lsp-mode)
+        lsp-mode
         lsp-pyright
         org-modern
         org-rich-yank
         org-download
         evil-org
-        (withPlists lsp-treemacs)
-        (withPlists lsp-ui)
+        lsp-treemacs
+        lsp-ui
         rustic
         auto-dim-other-buffers
         doom-themes
