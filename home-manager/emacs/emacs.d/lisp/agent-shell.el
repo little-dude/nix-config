@@ -2,6 +2,8 @@
   :after evil
   :commands (agent-shell)
   :bind (("C-c a" . agent-shell))
+  :custom
+  (agent-shell-session-restore-verbosity 'full)
   :config
   ;; Evil state-specific RET behavior: insert mode = newline, normal mode = send
   (evil-define-key 'insert agent-shell-mode-map (kbd "RET") #'newline)
@@ -13,6 +15,6 @@
 
   ;; Configure *agent-shell-diff* buffers to start in Emacs state
   (add-hook 'diff-mode-hook
-        (lambda ()
-          (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
-        (evil-emacs-state)))))
+            (lambda ()
+              (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
+                (evil-emacs-state)))))
