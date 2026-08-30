@@ -22,12 +22,12 @@
   hardware.sane = {
     enable = true;
     extraBackends = with pkgs; [
+      sane-airscan
       epkowa
-      utsushi
       hplipWithPlugin
     ];
   };
-  services.udev.packages = [pkgs.utsushi];
+  services.udev.packages = [pkgs.sane-airscan];
   # Discover printers/scanners on the network
   services.avahi.enable = true;
   # Important to resolve .local domains of printers, otherwise you get an error
