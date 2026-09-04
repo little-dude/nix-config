@@ -3,7 +3,14 @@
   config,
   ...
 }: {
-  home.packages = [pkgs.starship];
+  # starship itself is enabled in fish.nix, which installs the package too.
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    # fish gets its fzf bindings from the fzf-fish plugin in fish.nix.
+    enableFishIntegration = false;
+  };
+
   programs.zsh = {
     enable = true;
     # autocd = true;
@@ -45,12 +52,5 @@
       diff = "git diff --no-index";
     };
     initContent = builtins.readFile ./zshrc;
-  };
-
-  home.file = {
-    "starship-prompt.toml" = {
-      target = "${config.programs.zsh.dotDir}/starship-prompt.toml";
-      source = ./starship-prompt.toml;
-    };
   };
 }
