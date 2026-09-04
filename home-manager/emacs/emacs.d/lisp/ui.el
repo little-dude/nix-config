@@ -157,7 +157,17 @@
 
 ;; Persist minibuffer history so Vertico can sort by recency.
 (use-package savehist
-  :init (savehist-mode))
+  :init (savehist-mode)
+  :config
+  ;; evil-jumps adds evil-jumps-history to savehist-additional-variables, and
+  ;; savehist prints those with print-circle but without the print-then-read
+  ;; check it applies to minibuffer histories. The written value does not
+  ;; always read back, which breaks savehist on startup with
+  ;; "Invalid read syntax #1#". savehist-ignored-variables only covers
+  ;; minibuffer histories, so drop the variable from the list instead.
+  (setq savehist-additional-variables
+        (delq 'evil-jumps-history savehist-additional-variables))
+  (remove-hook 'savehist-save-hook #'evil--jumps-savehist-sync))
 
 (use-package consult
   :bind (("C-s"   . consult-line)
