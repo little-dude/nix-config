@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (global-set-key (kbd "C-c o a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
 (setq org-default-notes-file "~/notes/quick-notes.org")

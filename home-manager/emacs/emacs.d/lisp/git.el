@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; we keep our secrets in an encrypted file.
 (setq auth-sources
     '((:source "~/.config/authinfo.gpg")))

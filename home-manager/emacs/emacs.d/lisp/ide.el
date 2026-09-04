@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; All the packages that turn emacs into a full-blown IDE with code completion, linting, etc.
 
 (use-package corfu
